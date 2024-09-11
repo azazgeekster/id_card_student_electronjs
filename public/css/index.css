@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@500;700&display=swap'); 
+html,
+* {
+  font-family: 'IBM Plex Sans Arabic',  Helvetica, sans-serif;
+  /* font-family: 'Noto Kufi Arabic', sans-serif; */
+  line-height: 14px;
+  font-size: 9pt;
+}
+.letter-space-reduce{
+  letter-spacing: -0.4px;
+}
+body{
+  background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(49,97,129,1) 0%, rgba(1,1,1,1) 100%);
+}
+.container-card {
+  width: 85.6mm;
+  height: 53.98mm;
+  border: 1px solid #333;
+  outline: 0;
+  margin-top: 150px;
+  transform: scale(2.2);
+  background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), /* Add a semi-transparent white background */
+    url('../images/zellij.jpg') center center/cover; /* Set the background image */
+}
+
+.logo {
+  height: 10mm;
+  background-color:#0d6efd /*rgb(29, 14, 238)*/;
+  border-bottom: 3px solid orange;
+  
+}
+.blue{
+  color:rgb(29, 14, 238)
+}
+.logo img {
+  /* margin-top: 2px; */
+  height: 9.3mm;
+}
+ 
+#card_photo {
+  border: 1px solid rgb(29, 14, 238);
+  /* border: 1px solid #0d6efd; */
+  width: 25mm;
+  height: 25mm;
+  object-fit: cover;
+  position: absolute;
+  border-radius: 2px;
+
+ }
+
+.shiftend {
+  margin-left: auto;
+}
+
+label{
+  margin: 10px 2px ;
+  font-weight: bold;
+  font-size: medium;
+}
+
+#card_footer{
+  height:40px;
+}
+#qrcode img{
+  padding: 3px;
+  border:1px solid black;
+  border-radius: 3px;
+}
+fieldset, legend {
+  all: revert;
+}
+

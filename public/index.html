@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/index.css" />
+    <title>Card generator</title>
+  </head>
+
+  <body>
+    <!-- -----------\\ CARD BEGIN //-------------------- -->
+    <div id="print-this" class="container-card container p-0 bg-white">
+      <div class="logo d-flex">
+        <img class="img img-fluid mx-auto" src="images/dd.png" alt="" />
+        <!-- <img class="img img-fluid mx-auto" src="images/stand_fr_light.svg" alt="" /> -->
+      </div>
+      <div class="body">
+        <div class="row g-0 p m-0 ps-1 pe-2">
+          <div class="col-8">
+            <div class="text-end">
+              <span class="blue text-primaryx fw-bold small" style="direction: rtl">
+                الاسم العائلي: &nbsp;
+              </span>
+              <span class="card_lname small fw-bold">؟؟؟</span>
+            </div>
+            <div class="">
+              <span class="blue lastname-fr text-primaryx fw-bold small" style="direction: rtl">NOM: &nbsp;
+              </span>
+              <span class="card_lname_latin fw-bold small text-uppercase letter-space-reduce">XXXXXXXXXXX</span>
+            </div>
+  
+            <div class="">
+              <div class="text-end">
+                <span class="blue text-primaryx small fw-bold" style="direction: rtl">
+                  الاسم الشخصي: &nbsp;
+                </span>
+                <span class="card_fname small fw-bold">؟؟؟</span>
+              </div>
+            </div>
+            <div class="">
+              <span class="blue firstname-fr text-primaryx small fw-bold letter-space-reduce">PRENOM: &nbsp;
+              </span>
+              <span class="card_fname_latin fw-bold small text-uppercase letter-space-reduce">XXXXXXXXXXX</span>
+            </div>
+            <div class="py-2" id="card_footer">
+              <span class="blue text-primaryx small fw-bold letter-space-reduce" style="direction: rtl">FILIERE: &nbsp;
+              </span>
+              <span style="font-size: 0.8rem" class="card_diploma fw-bold letter-space-reduce text-uppercase">
+                XXXXXXXXXXX
+              </span>
+            </div>
+          </div>
+          <div class="col-4 d-flex">
+            <div class="image-container p-0">
+              <img id="card_photo" class="img-fluid ms-3 mt-1" src="images/person.jpg" alt="IMAGE" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row pe-2 py-0 g-0">
+        <div class="col-1 ps-3 pt-2">
+          <div id="qrcode"></div>
+        </div>
+        <div class="col-5 p-0 m-0">
+          <div class="text-end">
+            <div class="xtext-center">
+              <span class="blue text-primaryx small fw-bold" style="direction: rtl">:ر.ب.ت.و
+              </span>
+              <br />
+              <span class="card_cin small fw-bold">JTXXXXX</span>
+            </div>
+            <div class="text-centerx">
+              <span class="blue small fw-bold" style="direction: rtl">:رقم ابوجي</span>
+              <br />
+              <span class="card_apogee small fw-bold">20240000</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 pe-2">
+          <div class="text-end">
+            <div class="">
+              <span class="blue text-primaryx small fw-bold" style="direction: rtl">:رقم مسار
+              </span>
+              <br />
+              <span class="card_cne small fw-bold">D132XXXXXX</span>
+            </div>
+            <div>
+              <span class="blue text-primaryx small fw-bold" style="direction: rtl">:رقم التسجيل</span>
+              <br />
+              <span class="card_case_number small fw-bold letter-space-reduce">SE_SN/2023/32/</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- </div> -->
+    <br /><br /><br /><br /><br />
+    <div class="container mt-5 d-flex justify-content-center d-block">
+      <button class="btn btn-lg btn-outline-light" onclick="make_image()">
+        تحميل على شكل صورة
+      </button>
+      <button class="btn btn-lg btn-outline-light mx-3" onclick="preview_pdf()">
+        (Preview) معاينة البطاقة
+      </button>
+      <button
+        class="btn btn-lg btn-outline-warning"
+        data-bs-toggle="modal"
+        data-bs-target="#modalForm"
+      >
+        إنشاء بطاقة جديدة
+      </button>
+      <!-- Modal trigger button -->
+    </div>
+    <!-- Modal Body -->
+    <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+    <div class="modal fade" id="modalForm" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
+    aria-labelledby="modalTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title w-100 text-end" id="modalTitleId">
+            بطاقة جديدة
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="container mt-4 bg-light border border-dark w-100 h-100">
+            <h2 class="text-center my-4 fw-bold">إدخال المعلومات</h2>
+            <form class="form" id="form">
+              <fieldset>
+                <legend>المعلومات الشخصية</legend>
+                <div class="row">
+                  <div class="col-6">
+                    <div>
+                      <label for="fname" class="w-100 text-end">اﻹسم الشخصي (اللاتينية)</label>
+                      <input class="form-control" type="text" name="fname" id="fname" placeholder="....." />
+                    </div>
+                    <div>
+                      <label for="lname" class="w-100 text-end">اﻹسم العائلي (اللاتينية)</label>
+                      <input class="form-control" type="text" name="lname" id="lname" placeholder="...." />
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <label for="fname_ar" class="w-100 text-end">اﻹسم الشخصي</label>
+                    <input class="form-control" type="text" name="fname_ar" id="fname_ar" dir="rtl"
+                      placeholder="......" />
+                    <label for="lname_ar" class="w-100 text-end">اﻹسم العائلي</label>
+                    <input class="form-control" type="text" name="lname_ar" id="lname_ar" dir="rtl"
+                      placeholder="......" />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-6">
+                    <label for="cin">CIN</label>
+                    <input class="form-control" type="text" placeholder="JTXXXXX" name="cin" id="cin" />
+                  </div>
+                  <div class="col-6">
+                    <label for="cne">CNE</label>
+                    <input class="form-control" type="text" placeholder="D132XXXXXXX" name="cne" id="cne" />
+                  </div>
+                </div>
+              </fieldset>
+
+              <fieldset class="my-3">
+                <legend>معلومات عن التسجيل</legend>
+                <div class="row">
+                  <div class="col-4">
+                    <label for="date" class="w-100 text-end">رقم ابوجي</label>
+                    <input type="text" name="apogee" id="apogee" aria-describedby="textExample2"
+                      class="form-control w-100  " />
+                    <!-- <div class="col-auto">
+                        <span id="textExample2" class="form-text"> دع هذا المجال فارغا للحصول على التاريخ: 9/2023 </span>
+                      </div> -->
+                  </div>
+                  <div class="col-4">
+                    <div>
+                      <label for="case_number" class="w-100 text-end">رقم التسجيل</label>
+                      <input class="form-control" type="text" name="case_number" id="case_number" />
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="mb-3">
+                      <label for="diploma" class="w-100 text-end">الشعبة (اللاتينية)</label>
+                      <input type="text" id="diploma" name="diploma" class="form-control" list="mylist"
+                        autocomplete="off" />
+                      <datalist id="mylist">
+                        <option value="Master: Systèmes Embarqués et Services Numériques">SESN</option>
+                        <option value="Licence: Génie des Technologies Industrielles">GTI</option>
+                        <option value="Licence: Systèmes Informatiques Embarqués">SIE</option>
+                        <option value="Licence: Analytique des Données">AD</option>
+                        <option value=" Licence: Biotechnologies Appliquées à la Production Animale">BAPA</option>
+                        <option value="Licence: Chimie des matériaux et sciences de l'eau">CMSE</option>
+                      </datalist>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+
+              <label for="photo" class="w-100 text-end">صورة</label>
+              <input type="file" name="photo" id="photo" class="form-control w-100 my-2" />
+              <input class="btn btn-sm btn-primary my-2 align-center w-100 text-uppercase fw-bold" type="submit"
+                value="إنشاء" />
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- </div> -->
+  </div>
+    <!-- ================= //         \\=================== -->
+    <!-- ================= || CARD END ||=================== -->
+    <!-- ================= \\         //=================== -->
+    <!-- </div> -->
+    <div class="container d-flex justify-content-center">
+      <form id="bulkUpload">
+        <div class="row my-4">
+          <div class="col-10">
+            <input
+              type="file"
+              id="fileInput"
+              class="form-control"
+              accept=".xlsx, .xls"
+              style="opacity: 0.7"
+            />
+          </div>
+          <div class="col-2">
+            <input
+              class="btn btn-outline-warning mx-auto"
+              type="submit"
+              value="إنشاء البطاقات"
+            />
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <script src="/js/jquery-3.7.1.min.js"></script>
+    <script src="/js/qrcode.min.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/html2canvas.min.js"></script>
+    <script src="/js/jspdf.debug.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/xlsx.full.min.js"></script>
+    <script src="/js/create_card.js"></script>
+    <script src="/js/bulk.js"></script>
+  </body>
+</html>
