@@ -1,4 +1,4 @@
- 
+document.body.zoom=1.2; 
 var qrcodeContainer = document.getElementById("qrcode");
 var qrcode = new QRCode(qrcodeContainer, {
   text: `${document.getElementsByClassName('card_cne')[0].innerHTML}`, // URL or any other text you want to encode
