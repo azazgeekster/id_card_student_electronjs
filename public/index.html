@@ -108,6 +108,7 @@
         class="btn btn-lg btn-outline-warning"
         data-bs-toggle="modal"
         data-bs-target="#modalForm"
+        id="createCardBtn"
       >
         إنشاء بطاقة جديدة
       </button>
@@ -132,6 +133,12 @@
               <fieldset>
                 <legend>المعلومات الشخصية</legend>
                 <div class="row">
+                  
+                  <div class="col-12">
+                    <label for="date" class="w-100 text-end">رقم ابوجي</label>
+                    <input type="text" name="apogee" id="apogee" aria-describedby="textExample2"
+                      class="form-control w-100" />
+                  </div>
                   <div class="col-6">
                     <div>
                       <label for="fname" class="w-100 text-end">اﻹسم الشخصي (اللاتينية)</label>
@@ -167,14 +174,6 @@
                 <legend>معلومات عن التسجيل</legend>
                 <div class="row">
                   <div class="col-4">
-                    <label for="date" class="w-100 text-end">رقم ابوجي</label>
-                    <input type="text" name="apogee" id="apogee" aria-describedby="textExample2"
-                      class="form-control w-100  " />
-                    <!-- <div class="col-auto">
-                        <span id="textExample2" class="form-text"> دع هذا المجال فارغا للحصول على التاريخ: 9/2023 </span>
-                      </div> -->
-                  </div>
-                  <div class="col-4">
                     <div>
                       <label for="case_number" class="w-100 text-end">رقم التسجيل</label>
                       <input class="form-control" type="text" name="case_number" id="case_number" />
@@ -197,13 +196,14 @@
                       </datalist>
                     </div>
                   </div>
-                </div>
+                  <div class="col-4">
+                    <label for="photo" class="w-100 text-end">صورة</label>
+                    <input type="file" name="photo" id="photo" class="form-control w-100" />
+                  </div>
+                  
               </fieldset>
-
-              <label for="photo" class="w-100 text-end">صورة</label>
-              <input type="file" name="photo" id="photo" class="form-control w-100 my-2" />
-              <input class="btn btn-sm btn-primary my-2 align-center w-100 text-uppercase fw-bold" type="submit"
-                value="إنشاء" />
+              <input class="btn btn-sm btn-primary my-2 align-center w-100 text-uppercase fw-bold" type="submit"  value="إنشاء" />
+                </div>
             </form>
           </div>
         </div>

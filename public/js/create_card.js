@@ -1,9 +1,10 @@
 $(document).ready(function () {
+  // let canEdit = false;
+
+  // Handle form submission
   $("#form").on("submit", function (e) {
-    // Prevent default form submission behavior
     e.preventDefault();
 
-    // Collect form data
     const formData = {
       fname: $("#fname").val(),
       lname: $("#lname").val(),
@@ -17,7 +18,7 @@ $(document).ready(function () {
       apogee: $("#apogee").val(),
     };
 
-    // Update UI elements
+    // Hide the modal and update card details
     $("#modalForm").css("display", "none");
     $(".modal-backdrop").remove();
     $(".card_fname").html(formData.fname_ar);
@@ -30,23 +31,29 @@ $(document).ready(function () {
     $(".card_diploma").html(formData.diploma);
     $(".card_apogee").html(formData.apogee);
 
-    // Format and set the date
-    // const formattedDate = formData.date.split("-").reverse().join("/");
-    // if(formattedDate) $(".card_date").html(formattedDate);
-
     // Generate QR code
     qrcode.clear(); // Clears the existing QR code
     qrcode.makeCode(formData.cne); // Generates a new QR code with the new text
+
+    // Switch the button to "Edit Card"
+    $("#createCardBtn").text("تعديل المعطيات");
   });
-});
 
-$("#photo").on("change", function (e) {
-  const file = e.target.files[0];
-  const reader = new FileReader();
+  // Handle switching to "Edit Card"
+  $("#createCardBtn").on("click", function () {
+      // Pre-fill the form with existing card data for editing
+      $("#fname").val($(".card_fname_latin").text());
+      $("#lname").val($(".card_lname_latin").text());
+      $("#fname_ar").val($(".card_fname").text());
+      $("#lname_ar").val($(".card_lname").text());
+      $("#diploma").val($(".card_diploma").text());
+      $("#cin").val($(".card_cin").text());
+      $("#cne").val($(".card_cne").text());
+      $("#case_number").val($(".card_case_number").text());
+      $("#apogee").val($(".card_apogee").text());
 
-  reader.onload = function (event) {
-    const fileContent = event.target.result;
-    $("#card_photo").attr("src", fileContent);
-  };
-  reader.readAsDataURL(file);
+      // Show the modal for editing
+      $("#modalForm").modal("show");
+   
+  });
 });
