@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modify DOCX</title>
+    <script src="https://cdn.jsdelivr.net/npm/pizzip@3.1.1/dist/pizzip.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/docxtemplater@3.22.2/build/docxtemplater.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+</head>
+<body>
+    <h1>DOCX Placeholder Replacement</h1>
+    <input type="file" id="upload" />
+    <button onclick="generateDoc()">Generate DOCX</button>
+
+    <script>
+        let doc;
+
+        // Function to handle file upload
+        document.getElementById('upload').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const content = event.target.result;
+                const zip = new PizZip(content);
+                doc = new window.docxtemplater(zip, { paragraphLoop: true, linebreaks: true });
+            };
+            reader.readAsBinaryString(file);
+        });
+
+        // Function to replace placeholders and download new docx
+        function generateDoc() {
+            // Replace placeholders with actual data
+            doc.setData({
+                FILIERE: 'Computer Engineering',
+                CLASSEMENT: 'Top 10',
+                NAMEFR: 'John Doe',
+                NAMEAR: 'جون دو',
+                CNE: '123456789',
+                CIN: 'AB123456',
+                DATENAISSANCE: '01/01/1990',
+                AU: '2024/2025',
+                SEMESTRES: 'Semestre 1',
+                DATE: '16/10/2024'
+            });
+
+            try {
+                // Apply the data
+                doc.render();
+
+                // Generate a binary blob
+                const out = doc.getZip().generate({
+                    type: "blob",
+                    mimeType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                });
+
+                // Use FileSaver to download the generated file
+                saveAs(out, "output.docx");
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+    </script>
+</body>
+</html>

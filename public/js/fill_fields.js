@@ -27,8 +27,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 if (record) {
                     console.log("record ok ", record['prenom'])
-                    // document.getElementById('case_number').value = record.case_number || '';
-                    // document.getElementById('diploma').value = record.diploma || '';
                     $("#fname").val(record['prenom'] || 'NA');
                     $("#lname").val(record['nom'] || 'NA');
                     $("#lname_ar").val(record['nom_ar'] || 'NA');
