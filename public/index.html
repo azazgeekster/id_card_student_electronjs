@@ -1,122 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/css/index.css" />
-    <title>Card generator</title>
-  </head>
 
-  <body>
-    <!-- -----------\\ CARD BEGIN //-------------------- -->
-    <div id="print-this" class="container-card container p-0 bg-white">
-      <div class="logo d-flex">
-        <img class="img img-fluid mx-auto" src="images/dd.png" alt="" />
-        <!-- <img class="img img-fluid mx-auto" src="images/stand_fr_light.svg" alt="" /> -->
-      </div>
-      <div class="body">
-        <div class="row g-0 p m-0 ps-1 pe-2">
-          <div class="col-8">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/index.css" />
+  <title>Card generator</title>
+</head>
+
+<body>
+  <!-- -----------\\ CARD BEGIN //-------------------- -->
+  <div id="print-this" class="container-card container p-0 bg-white">
+    <div class="logo d-flex">
+      <img class="img img-fluid mx-auto" src="images/dd.png" alt="" />
+      <!-- <img class="img img-fluid mx-auto" src="images/stand_fr_light.svg" alt="" /> -->
+    </div>
+    <div class="body">
+      <div class="row g-0 p m-0 ps-1 pe-2">
+        <div class="col-8">
+          <div class="text-end">
+            <span class="blue text-primaryx fw-bold small" style="direction: rtl">
+              الاسم العائلي: &nbsp;
+            </span>
+            <span class="card_lname small fw-bold">؟؟؟</span>
+          </div>
+          <div class="">
+            <span class="blue lastname-fr text-primaryx fw-bold small" style="direction: rtl">NOM: &nbsp;
+            </span>
+            <span class="card_lname_latin fw-bold small text-uppercase letter-space-reduce">XXXXXXXXXXX</span>
+          </div>
+
+          <div class="">
             <div class="text-end">
-              <span class="blue text-primaryx fw-bold small" style="direction: rtl">
-                الاسم العائلي: &nbsp;
+              <span class="blue text-primaryx small fw-bold" style="direction: rtl">
+                الاسم الشخصي: &nbsp;
               </span>
-              <span class="card_lname small fw-bold">؟؟؟</span>
-            </div>
-            <div class="">
-              <span class="blue lastname-fr text-primaryx fw-bold small" style="direction: rtl">NOM: &nbsp;
-              </span>
-              <span class="card_lname_latin fw-bold small text-uppercase letter-space-reduce">XXXXXXXXXXX</span>
-            </div>
-  
-            <div class="">
-              <div class="text-end">
-                <span class="blue text-primaryx small fw-bold" style="direction: rtl">
-                  الاسم الشخصي: &nbsp;
-                </span>
-                <span class="card_fname small fw-bold">؟؟؟</span>
-              </div>
-            </div>
-            <div class="">
-              <span class="blue firstname-fr text-primaryx small fw-bold letter-space-reduce">PRENOM: &nbsp;
-              </span>
-              <span class="card_fname_latin fw-bold small text-uppercase letter-space-reduce">XXXXXXXXXXX</span>
-            </div>
-            <div class="py-2" id="card_footer">
-              <span class="blue text-primaryx small fw-bold letter-space-reduce" style="direction: rtl">FILIERE: &nbsp;
-              </span>
-              <span style="font-size: 0.8rem" class="card_diploma fw-bold letter-space-reduce text-uppercase">
-                XXXXXXXXXXX
-              </span>
+              <span class="card_fname small fw-bold">؟؟؟</span>
             </div>
           </div>
-          <div class="col-4 d-flex">
-            <div class="image-container p-0">
-              <img id="card_photo" class="img-fluid ms-3 mt-1" src="images/person.jpg" alt="IMAGE" />
-            </div>
+          <div class="">
+            <span class="blue firstname-fr text-primaryx small fw-bold letter-space-reduce">PRENOM: &nbsp;
+            </span>
+            <span class="card_fname_latin fw-bold small text-uppercase letter-space-reduce">XXXXXXXXXXX</span>
+          </div>
+          <div class="py-2" id="card_footer">
+            <span class="blue text-primaryx small fw-bold letter-space-reduce" style="direction: rtl">FILIERE: &nbsp;
+            </span>
+            <span style="font-size: 0.8rem" class="card_diploma fw-bold letter-space-reduce text-uppercase">
+              XXXXXXXXXXX
+            </span>
           </div>
         </div>
-      </div>
-      <div class="row pe-2 py-0 g-0">
-        <div class="col-1 ps-3 pt-2">
-          <div id="qrcode"></div>
-        </div>
-        <div class="col-5 p-0 m-0">
-          <div class="text-end">
-            <div class="xtext-center">
-              <span class="blue text-primaryx small fw-bold" style="direction: rtl">:ر.ب.ت.و
-              </span>
-              <br />
-              <span class="card_cin small fw-bold">JTXXXXX</span>
-            </div>
-            <div class="text-centerx">
-              <span class="blue small fw-bold" style="direction: rtl">:رقم ابوجي</span>
-              <br />
-              <span class="card_apogee small fw-bold">20240000</span>
-            </div>
-          </div>
-        </div>
-        <div class="col-6 pe-2">
-          <div class="text-end">
-            <div class="">
-              <span class="blue text-primaryx small fw-bold" style="direction: rtl">:رقم مسار
-              </span>
-              <br />
-              <span class="card_cne small fw-bold">D132XXXXXX</span>
-            </div>
-            <div>
-              <span class="blue text-primaryx small fw-bold" style="direction: rtl">:رقم التسجيل</span>
-              <br />
-              <span class="card_case_number small fw-bold letter-space-reduce">SE_SN/2023/32/</span>
-            </div>
+        <div class="col-4 d-flex">
+          <div class="image-container p-0">
+            <img id="card_photo" class="img-fluid ms-3 mt-1" src="images/person.jpg" alt="IMAGE" />
           </div>
         </div>
       </div>
     </div>
+    <div class="row pe-2 py-0 g-0">
+      <div class="col-1 ps-3 pt-2">
+        <div id="qrcode"></div>
+      </div>
+      <div class="col-5 p-0 m-0">
+        <div class="text-end">
+          <div class="xtext-center">
+            <span class="blue text-primaryx small fw-bold" style="direction: rtl">:ر.ب.ت.و
+            </span>
+            <br />
+            <span class="card_cin small fw-bold">JTXXXXX</span>
+          </div>
+          <div class="text-centerx">
+            <span class="blue small fw-bold" style="direction: rtl">:رقم ابوجي</span>
+            <br />
+            <span class="card_apogee small fw-bold">20240000</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 pe-2">
+        <div class="text-end">
+          <div class="">
+            <span class="blue text-primaryx small fw-bold" style="direction: rtl">:رقم مسار
+            </span>
+            <br />
+            <span class="card_cne small fw-bold">D132XXXXXX</span>
+          </div>
+          <div>
+            <span class="blue text-primaryx small fw-bold" style="direction: rtl">:رقم التسجيل</span>
+            <br />
+            <span class="card_case_number small fw-bold letter-space-reduce">SE_SN/2023/32/</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <!-- </div> -->
-    <br /><br /><br /><br /><br />
-    <div class="container mt-5 d-flex justify-content-center d-block">
-      <button class="btn btn-lg btn-outline-light" onclick="make_image()">
-        تحميل على شكل صورة
-      </button>
-      <button class="btn btn-lg btn-outline-light mx-3" onclick="preview_pdf()">
-        (Preview) معاينة البطاقة
-      </button>
-      <button
-        class="btn btn-lg btn-outline-warning"
-        data-bs-toggle="modal"
-        data-bs-target="#modalForm"
-        id="createCardBtn"
-      >
-        إنشاء بطاقة جديدة
-      </button>
-      <!-- Modal trigger button -->
-    </div>
-    <!-- Modal Body -->
-    <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
-    <div class="modal fade" id="modalForm" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
+  <!-- </div> -->
+  <br /><br /><br /><br /><br />
+  <div class="container mt-5 d-flex justify-content-center d-block">
+    <button class="btn btn-lg btn-outline-light" onclick="make_image()">
+      تحميل على شكل صورة
+    </button>
+    <button class="btn btn-lg btn-outline-light mx-3" onclick="preview_pdf()">
+      (Preview) معاينة البطاقة
+    </button>
+    <button class="btn btn-lg btn-outline-warning" data-bs-toggle="modal" data-bs-target="#modalForm"
+      id="createCardBtn">
+      إنشاء بطاقة جديدة
+    </button>
+    <!-- Modal trigger button -->
+     
+  </div>
+  <div class="container mt-5 mx-auto text-center">
+    <h3 class="text-white text-center">DECHARGE SIM </h3>
+    <input class="p-2" type="text" id="cne" placeholder="Enter CNE" maxlength="10">
+    <input class="p-2" type="text" id="sim_code" placeholder="Enter SIM Code" >
+    <button id="generateBtn" class="btn btn-primary mt-2s">Generate</button>
+</div>
+  <!-- Modal Body -->
+  <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+  <div class="modal fade" id="modalForm" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
     aria-labelledby="modalTitleId" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg" role="document">
       <div class="modal-content">
@@ -133,7 +137,7 @@
               <fieldset>
                 <legend>المعلومات الشخصية</legend>
                 <div class="row">
-                  
+
                   <div class="col-12">
                     <label for="date" class="w-100 text-end">رقم ابوجي</label>
                     <input type="text" name="apogee" id="apogee" aria-describedby="textExample2"
@@ -200,54 +204,95 @@
                     <label for="photo" class="w-100 text-end">صورة</label>
                     <input type="file" name="photo" id="photo" class="form-control w-100" />
                   </div>
-                  
+
               </fieldset>
-              <input class="btn btn-sm btn-primary my-2 align-center w-100 text-uppercase fw-bold" type="submit"  value="إنشاء" />
-                </div>
-            </form>
+              <input class="btn btn-sm btn-primary my-2 align-center w-100 text-uppercase fw-bold" type="submit"
+                value="إنشاء" />
           </div>
+          </form>
         </div>
       </div>
     </div>
-
-    <!-- </div> -->
   </div>
-    <!-- ================= //         \\=================== -->
-    <!-- ================= || CARD END ||=================== -->
-    <!-- ================= \\         //=================== -->
-    <!-- </div> -->
-    <div class="container d-flex justify-content-center">
-      <form id="bulkUpload">
-        <div class="row my-4">
-          <div class="col-10">
-            <input
-              type="file"
-              id="fileInput"
-              class="form-control"
-              accept=".xlsx, .xls"
-              style="opacity: 0.7"
-            />
+<!-- Modal for Print Preview sim -->
+<div class="modal fade" id="sim_modal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog">
+  <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content p-4">
+          <div class="modal-header">
+              <h5 class="modal-title">Décharge (Carte SIM)</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="col-2">
-            <input
-              class="btn btn-outline-warning mx-auto"
-              type="submit"
-              value="إنشاء البطاقات"
-            />
+          <div class="modal-body" id="print-content">
+              <div class="text-center header_sim">
+                  <h4>Université Ibn Zohr</h4>
+                  <p>Faculté des sciences appliquées Ait Melloul</p>
+              </div>
+              <p  class="fw-bold title_sim border text-center fs-4">Décharge (Carte SIM)</p>
+              <p>Nom: <span id="print-name"></span></p>
+              <p>CNE: <span id="print-cne"></span></p>
+              <p>CIN: <span id="print-cin"></span></p>
+              <p>Je reconnais avoir reçu la carte SIM référencée ci-dessous :</p>
+              <p><strong>Code:</strong> <span id="print-barcode"></span></p>
+              <p class="text-end">Ait Melloul le: <span id="print-date"></span></p>
           </div>
-        </div>
-      </form>
-    </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-primary" onclick="printContent()">Print</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+      </div>
+  </div>
+</div>
+  <!-- </div> -->
+  </div>
+  <!-- ================= //         \\=================== -->
+  <!-- ================= || CARD END ||=================== -->
+  <!-- ================= \\         //=================== -->
+  <!-- </div> -->
 
-    <script src="/js/jquery-3.7.1.min.js"></script>
-    <script src="/js/qrcode.min.js"></script>
-    <script src="/js/script.js"></script>
-    <script src="/js/html2canvas.min.js"></script>
-    <script src="/js/jspdf.debug.js"></script>
-    <script src="/js/bootstrap.bundle.min.js"></script>
-    <script src="/js/xlsx.full.min.js"></script>
-    <script src="/js/create_card.js"></script>
-    <script src="/js/bulk.js"></script>
-    <script src="/js/fill_fields.js"></script>
-  </body>
+  <div class="container d-flex justify-content-center">
+    <form id="bulkUpload">
+      <div class="row my-4">
+        <div class="col-10">
+          <input type="file" id="fileInput" class="form-control" accept=".xlsx, .xls" style="opacity: 0.7" />
+        </div>
+        <div class="col-2">
+          <input class="btn btn-outline-warning mx-auto" type="submit" value="إنشاء البطاقات" />
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- <div class="container d-flex justify-content-center">
+    <form id="bulkUpload">
+      <div class="row my-4">
+        <div class="col-10">
+          <input type="file" id="fileInput" class="form-control" accept=".xlsx, .xls" style="opacity: 0.7" />
+        </div>
+        <div class="col-2">
+          <input class="btn btn-outline-warning mx-auto" type="submit" value="إنشاء البطاقات" />
+          <button id="generateWord" class="btn btn-outline-primary mx-2">Generate Word</button>
+
+        </div>
+        
+      </div>
+    </form>
+  </div> -->
+
+  <script src="/js/jquery-3.7.1.min.js"></script>
+  <script src="/js/qrcode.min.js"></script>
+  <script src="/js/script.js"></script>
+  <script src="/js/html2canvas.min.js"></script>
+  <script src="/js/jspdf.debug.js"></script>
+  <script src="/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/xlsx.full.min.js"></script>
+  <script src="/js/create_card.js"></script>
+  <script src="/js/bulk.js"></script>
+  <script src="/js/sim.js"></script>
+
+  <script src="/js/fill_fields.js"></script>
+<script src="https://unpkg.com/pizzip@3.1.1/dist/pizzip.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/docxtemplater/3.24.0/docxtemplater.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+</body>
+
 </html>

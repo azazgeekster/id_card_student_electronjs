@@ -2,64 +2,104 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modify DOCX</title>
-    <script src="https://cdn.jsdelivr.net/npm/pizzip@3.1.1/dist/pizzip.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/docxtemplater@3.22.2/build/docxtemplater.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+    <title>Student Card Generator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+    crossorigin="anonymous"
+/>
 </head>
 <body>
-    <h1>DOCX Placeholder Replacement</h1>
-    <input type="file" id="upload" />
-    <button onclick="generateDoc()">Generate DOCX</button>
 
-    <script>
-        let doc;
+<div class="container mt-5">
+    <h3>Student Card Generator</h3>
+    <input type="text" id="cne" placeholder="Enter CNE" maxlength="10">
+    <input type="text" id="sim_code" placeholder="Enter SIM Code">
+    <button id="generateBtn" class="btn btn-primary mt-2">Generate</button>
+</div>
 
-        // Function to handle file upload
-        document.getElementById('upload').addEventListener('change', function(event) {
-            const file = event.target.files[0];
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                const content = event.target.result;
-                const zip = new PizZip(content);
-                doc = new window.docxtemplater(zip, { paragraphLoop: true, linebreaks: true });
-            };
-            reader.readAsBinaryString(file);
-        });
+<!-- Modal for Print Preview -->
+<div class="modal fade" id="sim_modal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content p-4">
+            <div class="modal-header">
+                <h5 class="modal-title">Décharge (Carte SIM)</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="print-content">
+                <div class="text-center">
+                    <h4>Université Ibn Zohr</h4>
+                    <p>Faculté des sciences appliquées Ait Mellou</p>
+                </div>
+                <p>Décharge (Carte SIM)</p>
+                <p>Nom: <span id="print-name"></span></p>
+                <p>CNE: <span id="print-cne"></span></p>
+                <p>CIN: <span id="print-cin"></span></p>
+                <p>Je reconnais avoir reçu la carte SIM référencée ci-dessous :</p>
+                <p><strong>Code:</strong> <span id="print-barcode"></span></p>
+                <p class="text-end">Ait Melloul le: <span id="print-date"></span></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="printContent()">Print</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-        // Function to replace placeholders and download new docx
-        function generateDoc() {
-            // Replace placeholders with actual data
-            doc.setData({
-                FILIERE: 'Computer Engineering',
-                CLASSEMENT: 'Top 10',
-                NAMEFR: 'John Doe',
-                NAMEAR: 'جون دو',
-                CNE: '123456789',
-                CIN: 'AB123456',
-                DATENAISSANCE: '01/01/1990',
-                AU: '2024/2025',
-                SEMESTRES: 'Semestre 1',
-                DATE: '16/10/2024'
-            });
+<script>
+    let jsonData = [];
 
-            try {
-                // Apply the data
-                doc.render();
+    // Fetch the Excel file
+    fetch('../db.xlsx')
+        .then(response => response.arrayBuffer())
+        .then(data => {
+            const workbook = XLSX.read(new Uint8Array(data), { type: 'array' });
+            const sheetName = workbook.SheetNames[0];
+            const worksheet = workbook.Sheets[sheetName];
+            jsonData = XLSX.utils.sheet_to_json(worksheet);
+        })
+        .catch(error => console.error('Error fetching or processing the Excel file:', error));
 
-                // Generate a binary blob
-                const out = doc.getZip().generate({
-                    type: "blob",
-                    mimeType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                });
+    // Function to generate the printable content
+    document.getElementById('generateBtn').addEventListener('click', function () {
+        const cne = document.getElementById('cne').value.trim();
+        const simCode = document.getElementById('sim_code').value.trim();
+        const record = jsonData.find(item => item.cne === cne);
 
-                // Use FileSaver to download the generated file
-                saveAs(out, "output.docx");
-            } catch (error) {
-                console.error('Error:', error);
-            }
+        if (record) {
+            // Populate modal fields with data
+            document.getElementById('print-name').textContent = `${record.prenom} ${record.nom}`;
+            document.getElementById('print-cne').textContent = record.cne;
+            document.getElementById('print-cin').textContent = record.cin;
+            document.getElementById('print-barcode').textContent = simCode;
+            document.getElementById('print-date').textContent = new Date().toLocaleDateString('fr-FR');
+
+            // Show the modal
+            new bootstrap.Modal(document.getElementById('sim_modal')).show();
+        } else {
+            alert('No record found for the provided CNE.');
         }
-    </script>
+    });
+
+    // Function to print the content
+    function printContent() {
+        const printContent = document.getElementById('print-content').innerHTML;
+        const newWindow = window.open('', '', 'height=400,width=600');
+        newWindow.document.write('<html><head><title>Print</title>');
+        newWindow.document.write('</head><body >');
+        newWindow.document.write(printContent);
+        newWindow.document.write('</body></html>');
+        newWindow.document.close();
+        newWindow.print();
+    }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
+

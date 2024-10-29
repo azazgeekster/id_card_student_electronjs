@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const apogeeValue = this.value;
         console.log(jsonData[0].apogee==apogeeValue)
         // Check if apogee value length is 10
-            if (apogeeValue.length == 10) {
+            if (apogeeValue.length == 8) {
                 let record = jsonData.find(item => item.apogee == apogeeValue);
                 
 
