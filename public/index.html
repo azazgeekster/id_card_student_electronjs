@@ -110,7 +110,8 @@
       إنشاء بطاقة جديدة
     </button>
     <!-- Modal trigger button -->
-     
+    <button onclick="exportCardToPDF()">Export ID Card to PDF</button>
+
   </div>
   <div class="container mt-5 mx-auto text-center">
     <h3 class="text-white text-center">DECHARGE SIM </h3>
@@ -118,6 +119,7 @@
     <input class="p-2" type="text" id="sim_code" placeholder="Enter SIM Code" >
     <button id="generateBtn" class="btn btn-primary mt-2s">Generate</button>
 </div>
+
   <!-- Modal Body -->
   <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
   <div class="modal fade" id="modalForm" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
@@ -279,11 +281,11 @@
   </div> -->
 
   <script src="/js/jquery-3.7.1.min.js"></script>
+  <script src="/js/bootstrap.bundle.min.js"></script>
   <script src="/js/qrcode.min.js"></script>
   <script src="/js/script.js"></script>
-  <script src="/js/html2canvas.min.js"></script>
   <script src="/js/jspdf.debug.js"></script>
-  <script src="/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/html2canvas.min.js"></script>
   <script src="/js/xlsx.full.min.js"></script>
   <script src="/js/create_card.js"></script>
   <script src="/js/bulk.js"></script>
@@ -293,6 +295,7 @@
 <script src="https://unpkg.com/pizzip@3.1.1/dist/pizzip.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/docxtemplater/3.24.0/docxtemplater.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+ 
 </body>
 
 </html>

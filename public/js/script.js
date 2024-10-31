@@ -4,6 +4,7 @@ var qrcode = new QRCode(qrcodeContainer, {
   text: `${document.getElementsByClassName('card_cne')[0].innerHTML}`, // URL or any other text you want to encode
   width: 45, // Width and Height of the QR code
   height: 45,
+  correctLevel : QRCode.CorrectLevel.H
 });
 function preview_pdf() {
   const content = document.getElementById("print-this");
