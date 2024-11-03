@@ -1,14 +1,14 @@
 document.body.zoom=1.2; 
 var qrcodeContainer = document.getElementById("qrcode");
 var qrcode = new QRCode(qrcodeContainer, {
-  text: `${document.getElementsByClassName('card_cne')[0].innerHTML}`, // URL or any other text you want to encode
-  width: 45, // Width and Height of the QR code
-  height: 45,
-  correctLevel : QRCode.CorrectLevel.H
+  text: $('.card_cne').text(), // URL or any other text you want to encode
+  width: 50, // Width and Height of the QR code
+  height: 50,
+  correctLevel : QRCode.CorrectLevel.L
 });
 function preview_pdf() {
   const content = document.getElementById("print-this");
-  html2canvas(content,{scale:2}).then((canvas) => {
+  html2canvas(content,{scale:3}).then((canvas) => {
     console.log(canvas.height);
     const imgData = canvas.toDataURL("image/png");
     const pdf = new jsPDF('l','mm', [244, 154]);

@@ -17,6 +17,7 @@ $(document).ready(function () {
       photo: $("#photo").val(),
       apogee: $("#apogee").val(),
     };
+console.log(formData);
 
     // Hide the modal and update card details
     $("#modalForm").css("display", "none");
@@ -30,7 +31,8 @@ $(document).ready(function () {
     $(".card_cin").html(formData.cin);
     $(".card_diploma").html(formData.diploma);
     $(".card_apogee").html(formData.apogee);
-
+    console.log(formData.cne);
+    
     // Generate QR code
     qrcode.clear(); // Clears the existing QR code
     qrcode.makeCode(formData.cne); // Generates a new QR code with the new text
@@ -51,7 +53,9 @@ $(document).ready(function () {
       $("#cne").val($(".card_cne").text());
       $("#case_number").val($(".card_case_number").text());
       $("#apogee").val($(".card_apogee").text());
-
+      qrcode.clear(); // Clears the existing QR code
+      qrcode.makeCode($("#cne").val()); // Generates a new QR code with the new text
+  
       // Show the modal for editing
       $("#modalForm").modal("show");
    

@@ -62,6 +62,8 @@
     <div class="row pe-2 py-0 g-0">
       <div class="col-1 ps-3 pt-2">
         <div id="qrcode"></div>
+        <!-- <svg id="barcode" class="w-100" style="max-width:100%; width: 40px;"></svg> -->
+
       </div>
       <div class="col-5 p-0 m-0">
         <div class="text-end">
@@ -103,19 +105,17 @@
       تحميل على شكل صورة
     </button>
     <button class="btn btn-lg btn-outline-light mx-3" onclick="preview_pdf()">
-      (Preview) معاينة البطاقة
+       معاينة البطاقة
     </button>
     <button class="btn btn-lg btn-outline-warning" data-bs-toggle="modal" data-bs-target="#modalForm"
       id="createCardBtn">
       إنشاء بطاقة جديدة
     </button>
     <!-- Modal trigger button -->
-    <button onclick="exportCardToPDF()">Export ID Card to PDF</button>
-
   </div>
   <div class="container mt-5 mx-auto text-center">
     <h3 class="text-white text-center">DECHARGE SIM </h3>
-    <input class="p-2" type="text" id="cne" placeholder="Enter CNE" maxlength="10">
+    <input class="p-2" type="text" id="cne_decharge" placeholder="Enter CNE" maxlength="10">
     <input class="p-2" type="text" id="sim_code" placeholder="Enter SIM Code" >
     <button id="generateBtn" class="btn btn-primary mt-2s">Generate</button>
 </div>
@@ -283,6 +283,7 @@
   <script src="/js/jquery-3.7.1.min.js"></script>
   <script src="/js/bootstrap.bundle.min.js"></script>
   <script src="/js/qrcode.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
   <script src="/js/script.js"></script>
   <script src="/js/jspdf.debug.js"></script>
   <script src="/js/html2canvas.min.js"></script>
@@ -295,7 +296,7 @@
 <script src="https://unpkg.com/pizzip@3.1.1/dist/pizzip.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/docxtemplater/3.24.0/docxtemplater.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
- 
+
 </body>
 
 </html>
