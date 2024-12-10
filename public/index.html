@@ -100,25 +100,109 @@
 
   <!-- </div> -->
   <br /><br /><br /><br /><br />
-  <div class="container mt-5 d-flex justify-content-center d-block">
-    <button class="btn btn-lg btn-outline-light" onclick="make_image()">
-      تحميل على شكل صورة
-    </button>
-    <button class="btn btn-lg btn-outline-light mx-3" onclick="preview_pdf()">
-       معاينة البطاقة
-    </button>
-    <button class="btn btn-lg btn-outline-warning" data-bs-toggle="modal" data-bs-target="#modalForm"
-      id="createCardBtn">
-      إنشاء بطاقة جديدة
-    </button>
-    <!-- Modal trigger button -->
+  <div class="container mt-5">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <!-- Cards Tab -->
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="cards-tab" data-bs-toggle="tab" data-bs-target="#cards" type="button" role="tab" aria-controls="cards" aria-selected="true">بطاقة الطالب</button>
+      </li>
+      <!-- Decharge Tab -->
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="decharge-tab" data-bs-toggle="tab" data-bs-target="#decharge" type="button" role="tab" aria-controls="decharge" aria-selected="false">Décharge SIM</button>
+      </li>
+      <!-- Attestation Tab -->
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="attestation-tab" data-bs-toggle="tab" data-bs-target="#attestation" type="button" role="tab" aria-controls="attestation" aria-selected="false">شواهد التسجيل</button>
+      </li>
+      <!-- Dossier Tab -->
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="dossier-tab" data-bs-toggle="tab" data-bs-target="#dossier" type="button" role="tab" aria-controls="dossier" aria-selected="false">ملفات التسجيل</button>
+      </li>
+    </ul>
+
+    <div class="tab-content" id="myTabContent">
+      <!-- Cards Tab Content -->
+      <div class="tab-pane fade show active" id="cards" role="tabpanel" aria-labelledby="cards-tab">
+        <div class="container mt-4">
+          <form id="bulkUploadCards">
+            <div class="row my-4">
+              <div class="col-10">
+                <input type="file" id="fileInput" class="form-control" accept=".xlsx, .xls" style="opacity: 0.7" />
+              </div>
+              <div class="col-2">
+                <input class="btn btn-outline-warning mx-auto" type="submit" value="إنشاء البطاقات" />
+              </div>
+            </div>
+          </form>
+          <button class="btn btn-lg btn-outline-light" onclick="make_image()">تحميل على شكل صورة</button>
+          <button class="btn btn-lg btn-outline-light mx-3" onclick="preview_pdf()">معاينة البطاقة</button>
+          <button class="btn btn-lg btn-outline-warning" data-bs-toggle="modal" data-bs-target="#modalForm" id="createCardBtn">إنشاء بطاقة جديدة</button>
+        </div>
+      </div>
+      <!-- Decharge Tab Content -->
+      <div class="tab-pane fade" id="decharge" role="tabpanel" aria-labelledby="decharge-tab">
+        <div class="container mt-4 text-center">
+          <form id="dechargeForm">
+            <div class="row my-3">
+              <div class="col-md-6">
+                <input type="text" id="cne_decharge" class="form-control" placeholder="Enter CNE" maxlength="10">
+              </div>
+              <div class="col-md-6">
+                <input type="text" id="sim_code" class="form-control" placeholder="Enter SIM Code">
+              </div>
+            </div>
+            <button class="btn btn-primary">Generate</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Attestation Tab Content -->
+      <div class="tab-pane fade" id="attestation" role="tabpanel" aria-labelledby="attestation-tab">
+        <div class="container mt-4">
+          <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#attestationModal">
+            إنشاء شهادة جديدة
+          </button>
+          
+          <hr style="color: aliceblue;">
+          <form id="bulkUploadAttestation">
+            <div class="row my-4">
+              <div class="col-6">
+                <input type="file" class="form-control" accept=".xlsx, .xls" />
+              </div>
+              <div class="col-2">
+                <button class="btn btn-outline-warning">إنشاء شواهد متعددة</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Dossier Tab Content -->
+      <div class="tab-pane fade" id="dossier" role="tabpanel" aria-labelledby="dossier-tab">
+        <div class="container mt-4">
+          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#dossierModal">
+            إنشاء ملف جديد
+          </button>
+          <hr style="color: aliceblue;">
+          <form id="bulkUploadDossier">
+            <div class="row my-4">
+              <div class="col-6">
+                <input type="file" class="form-control" accept=".xlsx, .xls" />
+              </div>
+              <div class="col-2">
+                <button class="btn btn-outline-warning">إنشاء ملفات متعددة</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="container mt-5 mx-auto text-center">
-    <h3 class="text-white text-center">DECHARGE SIM </h3>
-    <input class="p-2" type="text" id="cne_decharge" placeholder="Enter CNE" maxlength="10">
-    <input class="p-2" type="text" id="sim_code" placeholder="Enter SIM Code" >
-    <button id="generateBtn" class="btn btn-primary mt-2s">Generate</button>
-</div>
+
+
+
+
+
 
   <!-- Modal Body -->
   <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
@@ -216,6 +300,141 @@
       </div>
     </div>
   </div>
+
+  <!-- DOssier Modal -->
+
+  <div class="modal fade" id="dossierModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
+  aria-labelledby="dossierModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title w-100 text-end" id="dossierModalTitle">
+          ملف جديد
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container mt-4 bg-light border border-dark w-100 h-100">
+          <h2 class="text-center my-4 fw-bold">إدخال معلومات الملف</h2>
+          <form id="dossierForm">
+            <fieldset>
+              <legend>المعلومات الشخصية</legend>
+              <div class="row">
+                <div class="col-6">
+                  <label for="prenom_ar_dossier" class="w-100 text-end">اﻹسم الشخصي</label>
+                  <input class="form-control" type="text" name="prenom_ar_dossier" id="prenom_ar_dossier" dir="rtl"
+                    placeholder="......" />
+                </div>
+                <div class="col-6">
+                  <label for="nom_ar_dossier" class="w-100 text-end">اﻹسم العائلي</label>
+                  <input class="form-control" type="text" name="nom_ar_dossier" id="nom_ar_dossier" dir="rtl"
+                    placeholder="......" />
+                </div>
+                <div class="col-6">
+                  <label for="prenom_dossier" class="w-100 text-end">اﻹسم الشخصي (اللاتينية)</label>
+                  <input class="form-control" type="text" name="prenom_dossier" id="prenom_dossier" />
+                </div>
+                <div class="col-6">
+                  <label for="nom_dossier" class="w-100 text-end">اﻹسم العائلي (اللاتينية)</label>
+                  <input class="form-control" type="text" name="nom_dossier" id="nom_dossier" />
+                </div>
+              </div>
+            </fieldset>
+            <fieldset class="my-3">
+              <legend>معلومات الملف</legend>
+              <div class="row">
+                <div class="col-4">
+                  <label for="cne_dossier">CNE</label>
+                  <input class="form-control" type="text" name="cne_dossier" id="cne_dossier" value="D134777594" />
+                </div>
+                <div class="col-4">
+                  <label for="cin_dossier">CIN</label>
+                  <input class="form-control" type="text" name="cin_dossier" id="cin_dossier" />
+                </div>
+                <div class="col-4">
+                  <label for="apogee_dossier">Apogée</label>
+                  <input class="form-control" type="text" name="apogee_dossier" id="apogee_dossier" />
+                </div>
+                <div class="col-4">
+                  <label for="n_dossier_dossier">رقم الملف</label>
+                  <input class="form-control" type="text" name="n_dossier_dossier" id="n_dossier_dossier" />
+                </div>
+              </div>
+            </fieldset>
+            <input class="btn btn-sm btn-primary my-2 align-center w-100 text-uppercase fw-bold" type="submit"
+              value="إنشاء"  id="dossier_submit" />
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- // dossier modal -->
+
+  <!-- Attestation modal -->
+  <div class="modal fade" id="attestationModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
+  aria-labelledby="attestationModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title w-100 text-end" id="attestationModalTitle">
+          شهادة جديدة
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container mt-4 bg-light border border-dark w-100 h-100">
+          <h2 class="text-center my-4 fw-bold">إدخال معلومات الشهادة</h2>
+          <form id="attestationForm">
+            <fieldset>
+              <legend>المعلومات الشخصية</legend>
+              <div class="row">
+                <div class="col-6">
+                  <label for="prenom_ar_attestation" class="w-100 text-end">اﻹسم الشخصي</label>
+                  <input class="form-control" type="text" name="prenom_ar_attestation" id="prenom_ar_attestation" dir="rtl"
+                    placeholder="......" />
+                </div>
+                <div class="col-6">
+                  <label for="nom_ar_attestation" class="w-100 text-end">اﻹسم العائلي</label>
+                  <input class="form-control" type="text" name="nom_ar_attestation" id="nom_ar_attestation" dir="rtl"
+                    placeholder="......" />
+                </div>
+                <div class="col-6">
+                  <label for="prenom_attestation" class="w-100 text-end">اﻹسم الشخصي (اللاتينية)</label>
+                  <input class="form-control" type="text" name="prenom_attestation" id="prenom_attestation" />
+                </div>
+                <div class="col-6">
+                  <label for="nom_attestation" class="w-100 text-end">اﻹسم العائلي (اللاتينية)</label>
+                  <input class="form-control" type="text" name="nom_attestation" id="nom_attestation" />
+                </div>
+                <div class="col-6">
+                  <label for="cne_attestation">CNE</label>
+                  <input class="form-control" type="text" name="cne_attestation" id="cne_attestation" />
+                </div> <div class="col-6">
+                  <label for="apogee_attestation">Apogée</label>
+                  <input class="form-control" type="text" name="apogee_attestation" id="apogee_attestation" />
+                </div>
+                <div class="col-6">
+                  <label for="cin_attestation">CIN</label>
+                  <input class="form-control" type="text" name="cin_attestation" id="cin_attestation" />
+                </div>
+                <div class="col-6">
+                  <label for="date_naissance">تاريخ الميلاد</label>
+                  <input class="form-control" type="date" name="date_naissance" id="date_naissance" />
+                </div>
+              </div>
+            </fieldset>
+            <input class="btn btn-sm btn-primary my-2 align-center w-100 text-uppercase fw-bold" type="submit"
+              value="إنشاء" id="attestation_submit" />
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+   <!-- attestation modal -->
 <!-- Modal for Print Preview sim -->
 <div class="modal fade" id="sim_modal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog">
   <div class="modal-dialog modal-dialog-centered">
@@ -251,18 +470,7 @@
   <!-- ================= \\         //=================== -->
   <!-- </div> -->
 
-  <div class="container d-flex justify-content-center">
-    <form id="bulkUpload">
-      <div class="row my-4">
-        <div class="col-10">
-          <input type="file" id="fileInput" class="form-control" accept=".xlsx, .xls" style="opacity: 0.7" />
-        </div>
-        <div class="col-2">
-          <input class="btn btn-outline-warning mx-auto" type="submit" value="إنشاء البطاقات" />
-        </div>
-      </div>
-    </form>
-  </div>
+
 
   <!-- <div class="container d-flex justify-content-center">
     <form id="bulkUpload">
@@ -290,11 +498,12 @@
   <script src="/js/xlsx.full.min.js"></script>
   <script src="/js/create_card.js"></script>
   <script src="/js/bulk.js"></script>
+  <script src="/js/attestation_dossier.js"></script>
   <script src="/js/sim.js"></script>
 
   <script src="/js/fill_fields.js"></script>
-<script src="https://unpkg.com/pizzip@3.1.1/dist/pizzip.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/docxtemplater/3.24.0/docxtemplater.min.js"></script>
+<!-- <script src="https://unpkg.com/pizzip@3.1.1/dist/pizzip.js"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/docxtemplater/3.24.0/docxtemplater.min.js"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
 
 </body>

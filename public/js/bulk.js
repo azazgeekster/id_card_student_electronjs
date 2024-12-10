@@ -1,4 +1,8 @@
-document.getElementById("bulkUpload").addEventListener("submit", async function (e) {
+/**
+ * BULK CARDS
+ */
+
+$("#bulkUploadCards").on("submit", async function (e) {
   e.preventDefault();
   const file = document.getElementById("fileInput").files[0];
   const reader = new FileReader();
@@ -101,6 +105,33 @@ document.getElementById("bulkUpload").addEventListener("submit", async function 
         console.error("Error generating PDF:", err);
       }
     }
+  };
+
+  reader.onerror = function (ex) {
+    console.error(`excelError ${ex}`);
+  };
+
+  reader.readAsBinaryString(file);
+});
+
+/**
+ * DOSSIER BULK
+ */
+
+$("#bulkUploadDossier").on("submit", async function (e) {
+  e.preventDefault();
+  const file = document.getElementById("fileInput").files[0];
+  const reader = new FileReader();
+
+  reader.onload = async function (event) {
+    const data = event.target.result;
+    const workbook = XLSX.read(data, { type: "binary" });
+    const sheetName = workbook.SheetNames[0];
+    const sheet = workbook.Sheets[sheetName];
+    const studentData = XLSX.utils.sheet_to_json(sheet);
+
+    
+
   };
 
   reader.onerror = function (ex) {

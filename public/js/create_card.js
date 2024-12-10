@@ -2,6 +2,25 @@ $(document).ready(function () {
   // let canEdit = false;
 
   // Handle form submission
+  let uploadedPhoto = "images/person.jpg"; // Default image
+
+  // Capture the uploaded photo and convert to a data URL
+  $("#photo").on("change", function () {
+    const file = this.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        uploadedPhoto = e.target.result; // Store the data URL of the uploaded photo
+        $("#card_photo").attr("src", uploadedPhoto); // Display the uploaded photo
+      };
+      reader.readAsDataURL(file); // Convert file to data URL
+    } else {
+      uploadedPhoto = "images/person.jpg"; // Reset to default if no file
+      $("#card_photo").attr("src", uploadedPhoto);
+    }
+  });
+
+  // Handle form submission
   $("#form").on("submit", function (e) {
     e.preventDefault();
 
@@ -14,10 +33,9 @@ $(document).ready(function () {
       cin: $("#cin").val(),
       cne: $("#cne").val(),
       case_number: $("#case_number").val(),
-      photo: $("#photo").val(),
       apogee: $("#apogee").val(),
+      photo: uploadedPhoto, // Include the photo URL
     };
-console.log(formData);
 
     // Hide the modal and update card details
     $("#modalForm").css("display", "none");
@@ -31,8 +49,10 @@ console.log(formData);
     $(".card_cin").html(formData.cin);
     $(".card_diploma").html(formData.diploma);
     $(".card_apogee").html(formData.apogee);
-    console.log(formData.cne);
-    
+
+    // Set the photo in the image container
+    $("#card_photo").attr("src", formData.photo || "images/person.jpg");
+
     // Generate QR code
     qrcode.clear(); // Clears the existing QR code
     qrcode.makeCode(formData.cne); // Generates a new QR code with the new text
