@@ -7,15 +7,18 @@ $(function () {
         
         // Collect form data
         const dossierData = {
-            fname_ar: $("#prenom_ar_dossier").val(),
-            lname_ar: $("#nom_ar_dossier").val(),
-            fname: $("#prenom_dossier").val(),
-            lname: $("#nom_dossier").val(),
+            prenom_ar: $("#prenom_ar_dossier").val(),
+            nom_ar: $("#nom_ar_dossier").val(),
+            prenom: $("#prenom_dossier").val(),
+            nom: $("#nom_dossier").val(),
             cne: $("#cne_dossier").val(),
             cin: $("#cin_dossier").val(),
             apogee: $("#apogee_dossier").val(),
-            dossier_number: $("#n_dossier_dossier").val(),
+            n_dossier: $("#n_dossier_dossier").val(),
+            date:`${String(new Date().getDate()).padStart(2, '0')}/${String(new Date().getMonth() + 1).padStart(2, '0')}/${new Date().getFullYear()}`,
         };
+        dossierData.email = generateEmail(dossierData.prenom, dossierData.nom, dossierData.cin);
+
 
         
         fetch('http://localhost:1337/gendoc', {
@@ -47,3 +50,22 @@ $(function () {
     });
 });
 
+
+
+function generateEmail(prenom, nom, cin) {
+  // Helper function to clean up strings
+  const cleanString = (str) =>
+      str.toLowerCase().replace(/[\s\-']/g, '');
+
+  // Clean prenom and nom
+  const cleanPrenom = cleanString(prenom);
+  const cleanNom = cleanString(nom);
+
+  // Extract the last two digits of CIN
+  const lastTwoDigitsCin = cin.slice(-2);
+
+  // Form the email
+  const email = `${cleanPrenom}.${cleanNom}.${lastTwoDigitsCin}@edu.uiz.ac.ma`;
+
+  return email;
+}
